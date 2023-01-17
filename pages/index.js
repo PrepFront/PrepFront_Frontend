@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { Inter } from "@next/font/google";
 import HeroSection from "../components/HeroSection";
+import Layout from "../components/Layouts"
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -14,7 +15,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.svg" />
       </Head>
       <div>
-        <HeroSection />
+        <Layout>
+          <HeroSection />
+        </Layout>
       </div>
     </>
   );

@@ -1,0 +1,17 @@
+import { Poppins } from "@next/font/google";
+
+import "../styles/globals.css";
+
+Poppins({ subsets: ["latin"] })
+
+import { NextUIProvider } from '@nextui-org/react';
+
+function App({ Component, pageProps }) {
+  return (
+    <NextUIProvider>
+      <Component {...pageProps} />
+    </NextUIProvider>
+  );
+}
+
+export default App;
