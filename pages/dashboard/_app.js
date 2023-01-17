@@ -2,7 +2,7 @@ import { Poppins } from "@next/font/google";
 
 import "../styles/globals.css";
 
-Poppins({ subsets: ["latin"] })
+const poppins=Poppins({ subsets: ["latin"] })
 
 import { NextUIProvider } from '@nextui-org/react';
 
