@@ -1,15 +1,18 @@
-import { Button } from "@nextui-org/react";
+import { Button,Loading } from "@nextui-org/react";
 
-export default function(props){
-    const {label, outline, onPress} = props
+export default function (props) {
+    const { label, outline, onPress, loading } = props
     return (
         <Button
             auto
-            bordered={outline?true:false}
+            bordered={outline ? true : false}
             color='secondary'
-            onClick={onPress}
+            onPress={onPress}
+            disabled={loading}
         >
-            {label}
+            {
+                loading ? (<Loading type="spinner" color="currentColor" size="sm" />) : label
+            }
         </Button>
     )
 }
