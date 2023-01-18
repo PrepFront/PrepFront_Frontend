@@ -68,3 +68,20 @@ a{
     margin-top: 20px;
     gap: 20px;
 }
+
+/* css for swiper */
+
+.swiper {
+    width: 240px;
+    height: 320px;
+  }
+  
+.swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #fff;
+  }
