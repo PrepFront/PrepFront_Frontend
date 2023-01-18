@@ -2,7 +2,6 @@ import Link from "next/link";
 import React from "react";
 
 const NavItem = (props) => {
-  console.log(props.active);
   return (
     <Link legacyBehavior href={props.href}>
       <a
