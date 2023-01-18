@@ -26,8 +26,7 @@ const MENU_LIST = [
   },
 ];
 
-const Navbar = () => {
-  const [activeIdx, setActiveIdx] = useState(-1);
+const Navbar = ({activeIdx}) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const toggleDrawer = () => {
     setIsOpen((prevState) => !prevState);
@@ -52,7 +51,7 @@ const Navbar = () => {
             <div className="drawer__menu-items">
               {MENU_LIST.map((menu, idx) => {
                 return (
-                  <div onClick={() => setActiveIdx(idx)} key={menu.text}>
+                  <div key={menu.text}>
                     <NavItem active={activeIdx === idx} {...menu} />
                   </div>
                 );
