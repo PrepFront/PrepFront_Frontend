@@ -34,18 +34,6 @@ function Services() {
                 <p className='text-center text-white text-[28px] font-medium'>Master the art of <span className="text-secondaryColor font-semibold">Interviewing</span></p>
                 <p className='text-justify text-white'>Unlock the secrets to acing any interview with our expert guidance. Master the art of interviewing and stand out from the competition with our tailored coaching and resources. Take the first step towards your dream job today and explore our services.</p>
             </div>
-            <Swiper 
-                effect={"cards"}
-                grabCursor={true}
-                modules={[EffectCards]}
-                className="mySwiper"
-            >
-                {SERVICE_LIST.map((service, idx) => {
-                    return (
-                        <SwiperSlide><Card {...service}/></SwiperSlide>
-                    );
-                })}
-            </Swiper>
         </div>
     )
 }
