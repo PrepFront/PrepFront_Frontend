@@ -8,6 +8,8 @@ import Box from "../../Containers/Box"
 
 import API from "../../utils/api"
 import LINKS from "../../utils/constants/Backend_links"
+import NAME from "../../utils/constants/NamesForKeys"
+import LOCALSTORAGEUTIL from "../../utils/native/local-storage"
 
 
 export default function (props) {
@@ -40,6 +42,8 @@ export default function (props) {
         setLoading(true)
         try {
             const res = await handleLogin({ email, pass })
+            LOCALSTORAGEUTIL.setItem(NAME.TOKENS_KEY,res.data)
+            router.push('/dashboard')
             successToast()
         } catch (e) {
             errorToast()
@@ -74,3 +78,12 @@ async function handleLogin({ email, pass }) {
         password: pass
     })
 }
+
+export async function getServerSideProps() {
+
+    const data = {} ;
+    
+    return {
+        props : {data}
+    }
+ }

@@ -10,7 +10,7 @@ module.exports = {
         primaryColor: '#3F4CB0',
         secondaryColor: '#ef6037',
         background: '#F3F6F7',
-        dashboard: '#3F4CB0'
+        dashboard: '#3F4CB0',
       },
       screens: {
         'xs': '390px',

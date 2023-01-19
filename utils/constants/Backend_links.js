@@ -10,5 +10,5 @@ export default {
             TOKEN: `${BACKEND_LINK}/user/token`,
             USER_DETAIL: `${BACKEND_LINK}/user/me`,
         }
-    }
+    },
 }
