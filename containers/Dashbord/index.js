@@ -81,7 +81,7 @@ function InfoCard({ label, text }) {
         <Box display={'flex'} margin={1} borderRadius={2} sx={{
             boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.05)'
         }}>
-            <Box borderRadius={2} width={'40%'} fontSize={15} paddingY={1} backgroundColor={COLOR.grayBack} textAlign='center'>
+            <Box borderRadius={2} fontWeight='600' width={'40%'} fontSize={15} paddingY={1} backgroundColor={COLOR.grayBack} textAlign='center' color={COLOR.grayText}>
                 {label}
             </Box>
             <Box borderRadius={2} paddingLeft={1} paddingY={1} textOverflow='ellipsis'>
