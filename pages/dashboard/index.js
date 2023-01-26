@@ -1,61 +1,71 @@
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-
-import STORE_UTIL from "../../utils/native/local-storage"
-import CONSTANT from "../../utils/constants/NamesForKeys"
-import LINKS from "../../utils/constants/Backend_links"
-import API from "../../utils/api"
-import Box from "../../Containers/Box";
-import Sidebar from "../../Containers/Sidebar";
-import MainSection from "../../Containers/MainSection";
+import { Box } from '@mui/material'
+import { useState } from 'react'
+import Drawer from '../../components/Drawer'
+import MainSection from '../../components/MainSection'
+import COLORS from '../../constants/Colors'
+import Councelling from '../../containers/Councelling'
+import Dashbord from '../../containers/Dashbord'
+import DCS from '../../containers/DCS'
+import ImportantResources from '../../containers/ImportantResources'
+import NonTechnicalResorces from '../../containers/NonTechnicalResorces'
+import TechnicalResources from '../../containers/TechnicalResources'
 
 export default function (props) {
-    const router = useRouter()
-    const [user, setUser] = useState({})
-
-    async function handleFetch(access_token, refresh_token) {
-        try {
-            const res = await getUserDetails(access_token)
-            setUser(res.data)
-        } catch (e) {
-            handleAccessTokenFromRefresh(refresh_token)
-        }
-    }
-
-    async function handleAccessTokenFromRefresh(refresh_token) {
-        const { data } = await getTokensFromApi(refresh_token)
-        STORE_UTIL.setItem(CONSTANT.TOKENS_KEY,data)
-        handleFetch(data.accessToken,data.refresh_token)
-    }
-
-    useEffect(() => {
-        if (!STORE_UTIL.isPresent(CONSTANT.TOKENS_KEY)) {
-            router.push('dashboard/login')
-        }
-        else {
-            const { access_token, refresh_token } = STORE_UTIL.getItem(CONSTANT.TOKENS_KEY)
-            handleFetch(access_token, refresh_token)
-        }
-    },[])
-
+    const [activeIdx, setIdx] = useState(0)
+    const [drawerVisible, setVisibility] = useState(true)
+    const [currentHeading, setCurrentHeading] = useState(TABS[0].label)
     return (
-        <Box className = 'w-full h-screen block'>
-            <Sidebar/>
-            <MainSection/>
+        <Box
+            sx={{
+                width: '100%',
+                height: '100vh',
+                backgroundColor: COLORS.background
+            }}
+            display='flex'
+            flexDirection='row'
+        >
+            <Drawer
+                TABS={TABS}
+                activeIdx={activeIdx}
+                setActiveIdx={setIdx}
+                visible={drawerVisible}
+                setVisible={setVisibility}
+                setCurrentHeading={setCurrentHeading}
+            />
+            <MainSection
+                currentHeading={currentHeading}
+                activeIdx={activeIdx}
+                TABS={TABS}
+            />
         </Box>
     )
 }
 
-async function getUserDetails(accessToken) {
-    return await API.get(LINKS.ROUTES.USER.USER_DETAIL, {
-        headers: {
-            "authorization": `Bearer ${accessToken}`
-        }
-    })
-}
+const TABS = [
+    {
+        label: 'Dashboard',
+        component: Dashbord
+    },
+    {
+        label: 'Important Resources',
+        component: ImportantResources
+    },
+    {
+        label: 'Technical Resources',
+        component: TechnicalResources
+    },
+    {
+        label: 'Non-Technical Resources',
+        component: NonTechnicalResorces
+    },
+    {
+        label: '1 on 1 Councelling',
+        component: Councelling
+    },
+    {
+        label: 'DCS Session',
+        component: DCS
+    }
+]
 
-async function getTokensFromApi(refresh_token) {
-    return await API.get(LINKS.ROUTES.USER.TOKEN, {
-        refresh_token
-    })
-}
+

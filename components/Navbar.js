@@ -63,7 +63,7 @@ const Navbar = ({activeIdx}) => {
         <div className="nav__menu-list hidden lg:flex">
           {MENU_LIST.map((menu, idx) => {
             return (
-              <div onClick={() => setActiveIdx(idx)} key={menu.text}>
+              <div key={menu.text}>
                 <NavItem active={activeIdx === idx} {...menu} />
               </div>
             );
