@@ -5,7 +5,15 @@ import { Input } from "@nextui-org/react";
 
 
 export const Newsletter = () => {
-  
+  const [desktopsize, setDesktopSize] = useState(false);
+
+
+  useEffect(()=>{
+    console.log(window.innerWidth);
+    if(window.innerWidth >= 1000) {
+      setDesktopSize(true);
+    }
+  },)
 
   return (
     <div className="flex justify-center lg:justify-start w-full bg-white">
@@ -13,12 +21,11 @@ export const Newsletter = () => {
       <div className="absolute m-[50px] p-[30px] text-center md:text-left md:p-[50px] xl:p-[200px] z-10">
         <p className="  text-s xs:text-regular md:text-2xl text-gray-600 font-medium ">Want to have an edge in your Interview Preparation?</p>
         <p className='font-semibold text-3xl sm:text-4xl md:text-4xl lg:text-6xl'><span className='text-secondaryColor'>Subscribe</span> to our <span className='text-primaryColor'>newsletter</span>!</p>
-        <div className='flex justify-center flex-col sm:flex-row items-center md:justify-start gap-x-5 pt-2'>
+        <div className='flex justify-center flex-col sm:flex-row items-center md:justify-start gap-x-4 pt-2'>
           <Input
-
-            size= 'md'
+            size= {desktopsize ? "xl" : "xs"}
             css={{
-              width: '100',
+              width: '50%',
               padding:20,
           }}
             placeholder="Enter Your Email Address"
