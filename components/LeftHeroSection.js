@@ -8,7 +8,7 @@ function LeftHeroSection() {
     router.push('dashboard/')
   }
   return (
-    <div className="p-5 md:pt-[100px]">
+    <div className="p-5  pr-0 md:pt-[50px]">
       <div className="flex flex-col gap-y-8 md:gap-y-16 text-3xl font-semibold items-center justify-content md:text-5xl xl:text-6xl lg:items-start text-center lg:text-left">
         <div>
           <p className="bg-transparent pb-5">Worried about  your <span className="text-primaryColor">Job Interview</span> ?</p>

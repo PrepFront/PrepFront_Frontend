@@ -1,5 +1,8 @@
+import { Newsletter } from "./Newsletter";
 import Navbar from "./Navbar";
 import Services from "./Services";
+import  Footer  from "./Footer";
+
 
 
 const Layout = (props) => (
@@ -11,6 +14,8 @@ const Layout = (props) => (
       </main>
     </div>
     <Services/>
+    <Newsletter/>
+    <Footer/>
   </div>
 );
 

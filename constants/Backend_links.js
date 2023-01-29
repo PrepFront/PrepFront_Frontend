@@ -1,7 +1,3 @@
-const BACKEND_LINK= 'https://prep-front-backend.onrender.com/api'
-export default {
-    ROUTES: {
-        SERVICES: {
 
         },
         USER: {
