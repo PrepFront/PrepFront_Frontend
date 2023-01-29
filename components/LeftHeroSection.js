@@ -5,7 +5,7 @@ function LeftHeroSection() {
   const router = useRouter()
 
   function HandleClick(){
-    router.push('dashboard/login')
+    router.push('dashboard/')
   }
   return (
     <div className="p-5  pr-0 md:pt-[50px]">

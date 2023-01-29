@@ -4,6 +4,8 @@ import _merge from 'lodash/merge'
 export default {
     post(url, data, config={}){
         config = _merge({},config)
+        console.log("config",config)
+        console.log("data",data)
         const promise = axios.post(url,data,config)
         return promise
     },

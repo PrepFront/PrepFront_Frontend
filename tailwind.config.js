@@ -9,8 +9,10 @@ module.exports = {
       colors: {
         primaryColor: '#3F4CB0',
         secondaryColor: '#ef6037',
+        dashboard: '#3F4CB0',
         background: '#F3F6F7',
-        dashboard: '#3F4CB0'
+        accent: '#3F4CB0',
+        lightAccent: '#A3A5F9'
       },
       screens: {
         'xs': '390px',
