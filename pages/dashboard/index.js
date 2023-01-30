@@ -11,7 +11,7 @@ import NonTechnicalResorces from '../../containers/NonTechnicalResorces'
 import TechnicalResources from '../../containers/TechnicalResources'
 
 export default function (props) {
-    const [activeIdx, setIdx] = useState(0)
+    const [activeIdx, setIdx] = useState(1)
     const [drawerVisible, setVisibility] = useState(true)
     const [currentHeading, setCurrentHeading] = useState(TABS[0].label)
     return (
@@ -36,6 +36,7 @@ export default function (props) {
                 currentHeading={currentHeading}
                 activeIdx={activeIdx}
                 TABS={TABS}
+                collapse = {drawerVisible}
             />
         </Box>
     )
