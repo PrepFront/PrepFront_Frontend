@@ -26,8 +26,10 @@
     "react-hot-toast": "^2.4.0",
     "react-icons": "^4.7.1",
     "react-modern-drawer": "^1.1.2",
-    "swiper": "^8.4.6",
-    "react-toast": "^1.0.3"
+    "react-query": "^3.39.3",
+    "react-spinners": "^0.13.8",
+    "react-toast": "^1.0.3",
+    "swiper": "^8.4.6"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.13",

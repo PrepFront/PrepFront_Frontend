@@ -26,7 +26,8 @@ export default function ({
                     boxShadow: 0,
                     justifyContent: 'end',
                     display: 'flex',
-                    alignItems: 'end'
+                    alignItems: 'end',
+                    zIndex: 500
                 }} >
                 <Toolbar>
                     <IconButton
