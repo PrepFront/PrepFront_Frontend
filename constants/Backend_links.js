@@ -1,4 +1,4 @@
-const BACKEND_LINK= 'https://api.jobcadet.com/'
+const BACKEND_LINK= 'https://api.jobcadet.com'
 export default {
     ROUTES: {
         SERVICES: {

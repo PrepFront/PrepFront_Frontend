@@ -28,21 +28,6 @@ export default function (props) {
                         <Cards title={obj.title} key={index} description={obj.description} />
                     ))
                 }
-                {
-                    techQuery.data?.data.map((obj, index) => (
-                        <Cards title={obj.title} key={index} description={obj.description} />
-                    ))
-                }
-                {
-                    techQuery.data?.data.map((obj, index) => (
-                        <Cards title={obj.title} key={index} description={obj.description} />
-                    ))
-                }
-                {
-                    techQuery.data?.data.map((obj, index) => (
-                        <Cards title={obj.title} key={index} description={obj.description} />
-                    ))
-                }
             </Stack>
         </WaitForData>
     )

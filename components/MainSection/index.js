@@ -33,7 +33,7 @@ export default function ({
                     )
                 }
             </div>
-            <Box height='100vh' backgroundColor='green'>
+            <Box height='100vh'>
                 <Content />
             </Box>
         </Box>
