@@ -8,27 +8,34 @@ export default function ({
     activeIdx,
 }) {
     const Content = TABS[activeIdx].component
+    let height = 0
+
+    useEffect(()=>{
+        height=document.querySelector('#appBar').clientHeight
+        console.dir(height)
+    },[])
     return (
-        <Box sx={{width: '100%'}} height='100vh'>
-            <div>
+        <Box sx={{ width: '100%' }} height='100vh'>
+            <div id='appBar'>
                 {
                     activeIdx !== 0 && (
-                        <AppBar
-                            position="static"
-                            color="transparent"
+                        <Box
                             sx={{
                                 boxShadow: 0,
                                 padding: 5,
                                 fontWeight: 'bold',
                                 color: COLOR.text,
                                 fontSize: 25,
-                            }}>
+                            }}
+                            >
                             {currentHeading.toUpperCase()}
-                        </AppBar>
+                        </Box>
                     )
                 }
             </div>
-            <Content />
+            <Box height='100vh' backgroundColor='green'>
+                <Content />
+            </Box>
         </Box>
     )
 }

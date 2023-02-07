@@ -17,8 +17,10 @@ export default function (props) {
             <Stack
                 flex={1}
                 paddingX={5}
-                overflow='scroll'
-                height={'calc(100vh - 117.5px)'}
+                sx={{
+                    overflowY:'scroll'
+                }}
+                height={'100%'}
                 spacing={2}
             >
                 {

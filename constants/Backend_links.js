@@ -1,4 +1,4 @@
-const BACKEND_LINK= (process.env.NODE_ENV==='development')?'http://localhost:1234/api':'https://prep-front-backend.onrender.com/api'
+const BACKEND_LINK= 'https://api.jobcadet.com/'
 export default {
     ROUTES: {
         SERVICES: {
