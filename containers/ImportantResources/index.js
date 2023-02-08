@@ -15,11 +15,7 @@ export default function (props) {
     return (
         <WaitForData objects={[techQuery]}>
             <Stack
-                flex={1}
                 paddingX={5}
-                overflow='scroll'
-                height={'calc(100vh - 117.5px)'}
-                spacing={2}
             >
                 {
                     techQuery.data?.data.map((obj,index)=>(

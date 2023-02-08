@@ -9,26 +9,36 @@ export default function ({
 }) {
     const Content = TABS[activeIdx].component
     return (
-        <Box sx={{width: '100%'}} height='100vh'>
-            <div>
+        <Box sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            width: '100%',
+            height: '100vh'
+        }} >
+            <Box height='100vh' sx={{ display: 'contents' }}>
                 {
                     activeIdx !== 0 && (
-                        <AppBar
-                            position="static"
-                            color="transparent"
+                        <Box
                             sx={{
                                 boxShadow: 0,
                                 padding: 5,
                                 fontWeight: 'bold',
                                 color: COLOR.text,
                                 fontSize: 25,
-                            }}>
+                                flex: '0 1 auto',
+                            }}
+                        >
                             {currentHeading.toUpperCase()}
-                        </AppBar>
+                        </Box>
                     )
                 }
-            </div>
-            <Content />
+                <Box sx={{
+                    flex: '1 1 auto',
+                    overflowY: 'scroll',
+                }}>
+                    <Content />
+                </Box>
+            </Box>
         </Box>
     )
 }
