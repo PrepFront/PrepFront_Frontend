@@ -11,7 +11,7 @@ import NonTechnicalResorces from '../../containers/NonTechnicalResorces'
 import TechnicalResources from '../../containers/TechnicalResources'
 
 export default function (props) {
-    const [activeIdx, setIdx] = useState(5)
+    const [activeIdx, setIdx] = useState(1)
     const [drawerVisible, setVisibility] = useState(true)
     const [currentHeading, setCurrentHeading] = useState(TABS[activeIdx].label)
     return (
