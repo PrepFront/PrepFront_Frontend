@@ -5,6 +5,7 @@ export default {
             TECH: `${BACKEND_LINK}/service/tech-skills`,
             NON_TECH: `${BACKEND_LINK}/service/non-tech-skills`,
             INIT: `${BACKEND_LINK}/service/init-step`,
+            DCS: `${BACKEND_LINK}/service/dcs`
         },
         USER: {
             SIGNUP: `${BACKEND_LINK}/user/signup`,
