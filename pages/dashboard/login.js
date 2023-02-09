@@ -11,10 +11,14 @@ import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import API_CLIENT from '../utils/api'
-import loginImg from '../assets/login.svg';
+import API_CLIENT from '../../utils/api'
+import loginImg from '../../assets/login.svg';
 import Image from 'next/image';
-import LINK from "../constants/Backend_links"
+import LINK from "../../constants/Backend_links"
+import NamesForKeys from '../../constants/NamesForKeys';
+import localStorage from '../../utils/native/local-storage';
+import useUserState from '../../custom-hooks/userHooks/useUserState';
+import { useRouter } from 'next/router';
 
 
 function Copyright(props) {
@@ -33,6 +37,8 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function login() {
+
+    const router = useRouter()
 
     const [msg,setMsg] =useState('');
     const [email,setEmail] = useState('');
@@ -59,14 +65,12 @@ export default function login() {
         try{
             const res = await API_CLIENT.post(LINK.ROUTES.USER.LOGIN,{email:uid , password:password});
             console.log(res.data);
-
+            localStorage.setItem(NamesForKeys.TOKENS_KEY,res.data)
+            router.push('/dashboard')
         }
         catch(e){
             console.log('Error in Login Call ', e.message);
         }
-
-        
-
 
     };
 

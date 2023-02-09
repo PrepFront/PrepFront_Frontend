@@ -13,7 +13,7 @@ export default function ({
     return (
         <Box
             height={'100vh'}
-            width={visible ? 300 : 60}
+            width={visible ? 350 : 60}
             backgroundColor={COLOR.accent}
             display='grid'
             alignItems='center'
@@ -60,7 +60,8 @@ export default function ({
                                             borderRadius: visible ? '10px 0 0 10px' : 0,
                                             '&:hover': {
                                                 backgroundColor: activeIdx !== index ? COLOR.hoverAccent : COLOR.background
-                                            }
+                                            },
+                                            display: 'inline-block'
                                         }}
                                         onClick={() => {
                                             setActiveIdx(index)
