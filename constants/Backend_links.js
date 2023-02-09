@@ -12,6 +12,9 @@ export default {
             LOGIN: `${BACKEND_LINK}/user/login`,
             TOKEN: `${BACKEND_LINK}/user/token`,
             USER_DETAIL: `${BACKEND_LINK}/user/me`,
+        },
+        EXPERT: {
+            GET: `${BACKEND_LINK}/experts/get`
         }
     },
 }
