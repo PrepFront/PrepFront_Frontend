@@ -1,5 +1,11 @@
+import { Box } from "@mui/material";
+
 export default function(props){
     return(
-        <div className="w-full h-screen flex justify-center items-center font-bold text-2xl"><>Your Appointments</></div>
+        <Box
+         width
+         height
+        >
+        </Box>
     )
 }

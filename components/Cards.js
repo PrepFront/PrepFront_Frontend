@@ -18,7 +18,8 @@ export const Cards = ({ title, description }) => {
                 transitionTimingFunction: 'ease-in-out',
                 ':hover':{
                     boxShadow: '0px 0px 15px rgba(0, 0, 0, 0.2)',
-                }
+                },
+                marginBottom: 2
             }}
         >
             <Box

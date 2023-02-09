@@ -13,7 +13,7 @@ import TechnicalResources from '../../containers/TechnicalResources'
 export default function (props) {
     const [activeIdx, setIdx] = useState(1)
     const [drawerVisible, setVisibility] = useState(true)
-    const [currentHeading, setCurrentHeading] = useState(TABS[0].label)
+    const [currentHeading, setCurrentHeading] = useState(TABS[activeIdx].label)
     return (
         <Box
             sx={{
