@@ -7,6 +7,9 @@ export default {
         return this.getItem(key) != null
     },
     setItem(key, data) {
-        localStorage.setItem(key,JSON.stringify(data))
+        localStorage.setItem(key, JSON.stringify(data))
+    },
+    clearStorage(){
+        localStorage.clear()
     }
 }

@@ -1,20 +1,38 @@
-import { Box, Stack, TextField, Typography, Button } from "@mui/material";
-import { useRef, useState } from "react";
+import { Box, Stack, TextField, Typography, Button, Snackbar, Alert } from "@mui/material";
+import { useState } from "react";
 import { useQuery } from "react-query";
+import { toast, ToastContainer } from "react-toast";
 import WaitForData from "../../components/WaitForData";
 import Colors from "../../constants/Colors";
 import { getExperts } from "../../utils/services/experts";
+import API from '../../utils/api/User'
+import CONSTANTS from '../../constants/Backend_links'
 
 export default function (props) {
-
     const [expert, setExpert] = useState(null)
-    const dateRef = useRef()
+    const [dateTime, setDateTime] = useState(null)
 
     const expertQuery = useQuery({
         queryKey: ['Experts'],
         queryFn: getExperts,
         staleTime: 20 * 3600 * 1000 // 20min
     })
+
+    const HandleSubmit = async () => {
+        if(!expert || !dateTime){
+            return toast.error(ALERTS['allFeildError'])
+        }
+
+        try {
+            await API.makeAuthenticatedRequests(CONSTANTS.ROUTES.SERVICES.COUNCELLING.SCHEDULE,{
+                expert,
+                date_time: dateTime
+            })
+            toast.success(ALERTS['success'])
+        } catch(e){
+            toast.error(ALERTS['error'])
+        }
+    }
 
     return (
         <WaitForData objects={[expertQuery]}>
@@ -68,16 +86,31 @@ export default function (props) {
                             InputLabelProps={{
                                 shrink: true,
                             }}
-                            inputRef={dateRef}
+                            defaultValue={dateTime}
+                            onChange={(e) => { setDateTime(e.target.value) }}
                         />
-                        <button>
+                        <Button
+                            fullWidth
+                            color='info'
+                            sx={{
+                                marginTop: 2,
+                            }}
+                            onClick={HandleSubmit}
+                        >
                             Submit
-                        </button>
+                        </Button>
                     </Box>
                 </Box>
             </Box>
+            <ToastContainer/>
         </WaitForData>
     )
+}
+
+const ALERTS = {
+    success: 'Email sent Successfully',
+    allFeildError: 'You Need to Select All Feilds',
+    error: 'Some Error occured at server'
 }
 
 function ExpertCard({ expert, onClick }) {

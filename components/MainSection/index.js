@@ -6,6 +6,7 @@ export default function ({
     TABS,
     currentHeading,
     activeIdx,
+    user
 }) {
     const Content = TABS[activeIdx].component
     return (
@@ -36,7 +37,7 @@ export default function ({
                     flex: '1 1 auto',
                     overflowY: 'scroll',
                 }}>
-                    <Content />
+                    <Content user={user} />
                 </Box>
             </Box>
         </Box>

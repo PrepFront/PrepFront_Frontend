@@ -19,7 +19,7 @@ export default function (props) {
             >
                 {
                     techQuery.data?.data.map((obj,index)=>(
-                        <Cards title={obj.title} key={index} description={obj.description} />
+                        <Cards title={obj.title} key={index} image={obj.image} description={obj.description} />
                     ))
                 }
             </Stack>

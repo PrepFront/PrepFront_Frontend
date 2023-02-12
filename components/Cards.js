@@ -3,7 +3,7 @@ import { Box, Card, CardMedia, Typography } from '@mui/material'
 
 import Colors from '../constants/Colors'
 
-export const Cards = ({ title, description }) => {
+export const Cards = ({ title, description, image }) => {
     return (
         <Box
             display='flex'
@@ -28,12 +28,12 @@ export const Cards = ({ title, description }) => {
                 borderRadius={2}
             >
                 <CardMedia
-                    src='https://images.pexels.com/photos/276267/pexels-photo-276267.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+                    src={image || 'https://images.pexels.com/photos/276267/pexels-photo-276267.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'}
                     component={'img'}
                     alt='sample image'
-                    borderRadius={2.5}
                     sx={{
-                        width: 200
+                        width: 200,
+                        borderRadius: 2.5
                     }}
                 />
             </Box>
