@@ -1,4 +1,4 @@
-import { Box, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import { Box, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
 import { useQuery } from "react-query";
 import WaitForData from "../../components/WaitForData";
 import { getDCSLinks } from "../../utils/services/dcs";
@@ -21,7 +21,7 @@ export default function (props) {
                 {
                     dcsQuery.data?.data.length === 0 ? (
                         <div style={{ color: 'GrayText' }} className="w-full p-5 font-bold text-3xl">
-                            No meeting is scheduled yet
+                            No session is available yet
                         </div>
                     ) : (
                         <Table>

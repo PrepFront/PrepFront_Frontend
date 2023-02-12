@@ -1,15 +1,15 @@
 import { Settings } from "@mui/icons-material";
 import { AppBar, Box, Grid, IconButton, Stack, Toolbar } from "@mui/material";
+import Router from "next/router";
+import { toast, ToastContainer } from "react-toast";
 import COLOR from "../../constants/Colors";
+import useTokenState from "../../custom-hooks/userHooks/useTokenState";
 
-const DETAILS = {
-    College: 'ABC College',
-    Mobile: '988983498',
-    Qualification: 'BTech IT',
-    Email: 'test@test.com'
-}
 
-export default function (props) {
+export default function ({ user }) {
+
+    console.log(user)
+
     return (
         <Box
             width={'100%'}
@@ -19,9 +19,10 @@ export default function (props) {
             alignItems='center'
         >
             <Stack spacing={0} width={900}>
-                <AboveBar name={'JP Morgan'} />
-                <Card details={DETAILS} />
+                <AboveBar name={user.full_name} />
+                <Card details={user} />
             </Stack>
+            <ToastContainer/>
         </Box>
     )
 }
@@ -29,6 +30,7 @@ export default function (props) {
 function AboveBar({
     name,
 }) {
+    const { DeleteToken } = useTokenState()
     return (
         <AppBar sx={{
             display: 'flex',
@@ -47,6 +49,11 @@ function AboveBar({
                 <IconButton
                     edge='end'
                     color="inherit"
+                    onClick={async ()=>{
+                        DeleteToken()
+                        toast.info('you are now logged out')
+                        Router.push('/dashboard/login')
+                    }}
                 >
                     <Settings />
                 </IconButton>
@@ -55,21 +62,21 @@ function AboveBar({
     )
 }
 
-function Card({ details }){
+function Card({ details: { college, qualification, email } }) {
     return (
         <Box width={'100%'} height={500} backgroundColor={'white'} borderRadius={5} padding={10} boxShadow='0px 0px 10px rgba(0, 0, 0, 0.05)'>
             <Grid container spacing={2}>
                 <Grid xs={6}>
-                    <InfoCard label='College' text={details.College} />
+                    <InfoCard label='College' text={college} />
                 </Grid>
                 <Grid xs={6}>
-                    <InfoCard label='Mobile' text={details.Mobile} />
+                    <InfoCard label='Mobile' text={'+91 9583985395'} />
                 </Grid>
                 <Grid xs={6}>
-                    <InfoCard label={'Qualification'} text={details.Qualification} />
+                    <InfoCard label={'Qualification'} text={qualification} />
                 </Grid>
                 <Grid xs={6}>
-                    <InfoCard label={'Email'} text={details.Email} />
+                    <InfoCard label={'Email'} text={email} />
                 </Grid>
             </Grid>
         </Box>

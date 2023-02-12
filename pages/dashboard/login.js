@@ -10,16 +10,15 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import NoSSR from 'react-no-ssr'
 import API_CLIENT from '../../utils/api'
 import loginImg from '../../assets/login.svg';
 import Image from 'next/image';
 import LINK from "../../constants/Backend_links"
-import NamesForKeys from '../../constants/NamesForKeys';
-import localStorage from '../../utils/native/local-storage';
-import useUserState from '../../custom-hooks/userHooks/useUserState';
 import { useRouter } from 'next/router';
-
+import Loader from '../../components/loader';
+import useTokenState from '../../custom-hooks/userHooks/useTokenState';
+import { toast, ToastContainer } from 'react-toast'
 
 function Copyright(props) {
     return (
@@ -34,48 +33,35 @@ function Copyright(props) {
     );
 }
 
-const theme = createTheme();
+export default function Login() {
 
-export default function login() {
-
+    const { UpdateToken } = useTokenState()
     const router = useRouter()
+    const [loading, setLoading] = useState(false);
+    const emailRef = useRef()
+    const passRef = useRef()
 
-    const [msg,setMsg] =useState('');
-    const [email,setEmail] = useState('');
-    const [pwd,setPwd] = useState('');
-    
-    const getEmailData = (e)=>{
-        setEmail(e.target.value);
-    }
-
-    const getPwdData = (e)=>{
-        setPwd(e.target.value);
-    }
-
-
-    const handleSubmit = async (event) => {
-
-        event.preventDefault();
-
-        const uid = email;
-        const password= pwd;
-
-        console.log({email:uid , password:password})
-
-        try{
-            const res = await API_CLIENT.post(LINK.ROUTES.USER.LOGIN,{email:uid , password:password});
-            console.log(res.data);
-            localStorage.setItem(NamesForKeys.TOKENS_KEY,res.data)
-            router.push('/dashboard')
+    const handleSubmit = async () => {
+        const email = emailRef.current.value;
+        const password = passRef.current.value;
+        setLoading(true)
+        try {
+            const { data } = await API_CLIENT.post(LINK.ROUTES.USER.LOGIN, { email, password });
+            UpdateToken(data)
+            await router.push('/dashboard')
         }
-        catch(e){
-            console.log('Error in Login Call ', e.message);
+        catch (e) {
+            console.log(e.message)
         }
-
+        setLoading(false)
     };
 
+    if (loading) {
+        return <Loader message={'Redirecting you to Dashbaord'} />
+    }
+
     return (
-        <ThemeProvider theme={theme}>
+        <NoSSR>
             <Grid container component="main" sx={{ height: '100vh' }}>
                 <CssBaseline />
                 <Grid
@@ -89,11 +75,11 @@ export default function login() {
                             t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
-                        display:'flex',
-                        justifyContent:'center',
+                        display: 'flex',
+                        justifyContent: 'center',
                     }}
                 >
-                    <Image  src={loginImg} width={800} height={800}></Image>
+                    <Image src={loginImg} width={800} height={800} alt='login image'></Image>
                 </Grid>
                 <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
                     <Box
@@ -111,7 +97,7 @@ export default function login() {
                         <Typography component="h1" variant="h5">
                             Sign in
                         </Typography>
-                        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+                        <Box component="form" noValidate sx={{ mt: 1 }}>
                             <TextField
                                 margin="normal"
                                 required
@@ -121,7 +107,7 @@ export default function login() {
                                 name="email"
                                 autoComplete="email"
                                 autoFocus
-                                onChange={getEmailData}
+                                inputRef={emailRef}
                             />
                             <TextField
                                 margin="normal"
@@ -132,17 +118,14 @@ export default function login() {
                                 type="password"
                                 id="password"
                                 autoComplete="current-password"
-                                onChange={getPwdData}
+                                inputRef={passRef}
                             />
-                            {/* <FormControlLabel
-                control={<Checkbox value="remember" color="primary" />}
-                label="Remember me"
-              /> */}
                             <Button
                                 type="submit"
                                 fullWidth
                                 variant="outlined"
-                                sx={{ mt: 3, mb: 2}}
+                                sx={{ mt: 3, mb: 2 }}
+                                onClick={handleSubmit}
                             >
                                 Sign In
                             </Button>
@@ -162,7 +145,8 @@ export default function login() {
                         </Box>
                     </Box>
                 </Grid>
+                <ToastContainer />
             </Grid>
-        </ThemeProvider>
+        </NoSSR>
     );
 }
