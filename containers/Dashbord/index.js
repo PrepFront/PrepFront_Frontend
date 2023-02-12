@@ -1,5 +1,5 @@
-import { Settings } from "@mui/icons-material";
-import { AppBar, Box, Grid, IconButton, Stack, Toolbar } from "@mui/material";
+import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
+import { AppBar, Box, Grid, IconButton, Stack, Toolbar, Tooltip } from "@mui/material";
 import Router from "next/router";
 import { toast, ToastContainer } from "react-toast";
 import COLOR from "../../constants/Colors";
@@ -22,7 +22,7 @@ export default function ({ user }) {
                 <AboveBar name={user.full_name} />
                 <Card details={user} />
             </Stack>
-            <ToastContainer/>
+            <ToastContainer />
         </Box>
     )
 }
@@ -39,25 +39,27 @@ function AboveBar({
             flexDirection: 'row',
             alignItems: 'center',
             color: COLOR.accent,
-            paddingLeft: 2
+            paddingLeft: 2,
+            paddingRight: 2,
+            marginBottom: 2
         }} color="transparent" position="static" width='100%'>
             <span className="text-2xl font-semibold" style={{ color: 'gray' }}>
                 Hello,
                 <span className="text-3xl font-bold" style={{ color: COLOR.accent }}> {name} </span>
             </span>
-            <Toolbar>
+            <Tooltip title='Logout'>
                 <IconButton
                     edge='end'
                     color="inherit"
-                    onClick={async ()=>{
+                    onClick={async () => {
                         DeleteToken()
                         toast.info('you are now logged out')
                         Router.push('/dashboard/login')
                     }}
                 >
-                    <Settings />
+                    <LogoutRoundedIcon />
                 </IconButton>
-            </Toolbar>
+            </Tooltip>
         </AppBar>
     )
 }

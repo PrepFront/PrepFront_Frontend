@@ -19,17 +19,17 @@ export default function (props) {
     })
 
     const HandleSubmit = async () => {
-        if(!expert || !dateTime){
+        if (!expert || !dateTime) {
             return toast.error(ALERTS['allFeildError'])
         }
 
         try {
-            await API.makeAuthenticatedRequests(CONSTANTS.ROUTES.SERVICES.COUNCELLING.SCHEDULE,{
+            await API.makeAuthenticatedRequests(CONSTANTS.ROUTES.SERVICES.COUNCELLING.SCHEDULE, {
                 expert,
                 date_time: dateTime
             })
             toast.success(ALERTS['success'])
-        } catch(e){
+        } catch (e) {
             toast.error(ALERTS['error'])
         }
     }
@@ -61,23 +61,25 @@ export default function (props) {
                         }
                     </Stack>
                 </Box>
-                <Box flexFlow={1} flexGrow={1} padding={2} display='block' width={'1fr'} >
+                <Box flexFlow={1} flexGrow={1} padding={2} display='column' width={'1fr'}>
                     <Box>
                         <Typography fontWeight={900} fontSize={30} marginBottom={2} >Scheduling Details</Typography>
-                        {
-                            !expert ? (
-                                <Typography>You need to Select atleast one expert in order to continue</Typography>
-                            ) : (
-                                <Typography>
-                                    Your meeting is going to be scheduled with
-                                    {
-                                        <Typography fontWeight={700} fontSize={25} color={Colors.accent}>
-                                            {expert.name} <span className="text-sm italic text-gray-500" >{`(${expert.position} at ${expert.organization})`}</span>
-                                        </Typography>
-                                    }
-                                </Typography>
-                            )
-                        }
+                        <Box>
+                            {
+                                !expert ? (
+                                    <Typography>You need to Select atleast one expert in order to continue</Typography>
+                                ) : (
+                                    <Typography>
+                                        Your meeting is going to be scheduled with
+                                        {
+                                            <Typography fontWeight={700} fontSize={25} color={Colors.accent}>
+                                                {expert.name}<span className="text-sm italic text-gray-500" >{`(${expert.position} at ${expert.organization})`}</span>
+                                            </Typography>
+                                        }
+                                    </Typography>
+                                )
+                            }
+                        </Box>
                         <TextField
                             id="datetime-local"
                             label="Appointment"
@@ -102,7 +104,7 @@ export default function (props) {
                     </Box>
                 </Box>
             </Box>
-            <ToastContainer/>
+            <ToastContainer />
         </WaitForData>
     )
 }
@@ -132,7 +134,7 @@ function ExpertCard({ expert, onClick }) {
                 height: 'max-content',
                 justifyContent: 'start',
                 display: 'flex',
-                flexDirection: 'column'
+                flexDirection: 'column',
             }}
         >
             <Typography fontSize={20} fontWeight='bold'>

@@ -17,6 +17,7 @@ import Loader from '../../components/loader'
 import { useQuery } from 'react-query'
 import UserAPI from "../../utils/api/User";
 import WaitForData from '../../components/WaitForData'
+import Head from 'next/head'
 
 
 export default function (props) {
@@ -56,33 +57,41 @@ export default function (props) {
     }
 
     return (
-        <WaitForData objects={[userQuery]} >
-            <Box
-                sx={{
-                    width: '100%',
-                    height: '100vh',
-                    backgroundColor: COLORS.background
-                }}
-                display='flex'
-                flexDirection='row'
-            >
-                <Drawer
-                    TABS={TABS}
-                    activeIdx={activeIdx}
-                    setActiveIdx={setIdx}
-                    visible={drawerVisible}
-                    setVisible={setVisibility}
-                    setCurrentHeading={setCurrentHeading}
-                />
-                <MainSection
-                    currentHeading={currentHeading}
-                    activeIdx={activeIdx}
-                    TABS={TABS}
-                    collapse={drawerVisible}
-                    user={userQuery.data?.data}
-                />
-            </Box>
-        </WaitForData>
+        <>
+            <Head>
+                <title>Dashbaord</title>
+                <meta name="description" content="Your pathway to successful career🚀" />
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <link rel="icon" href="/favicon.svg" />
+            </Head>
+            <WaitForData objects={[userQuery]} >
+                <Box
+                    sx={{
+                        width: '100%',
+                        height: '100vh',
+                        backgroundColor: COLORS.background
+                    }}
+                    display='flex'
+                    flexDirection='row'
+                >
+                    <Drawer
+                        TABS={TABS}
+                        activeIdx={activeIdx}
+                        setActiveIdx={setIdx}
+                        visible={drawerVisible}
+                        setVisible={setVisibility}
+                        setCurrentHeading={setCurrentHeading}
+                    />
+                    <MainSection
+                        currentHeading={currentHeading}
+                        activeIdx={activeIdx}
+                        TABS={TABS}
+                        collapse={drawerVisible}
+                        user={userQuery.data?.data}
+                    />
+                </Box>
+            </WaitForData>
+        </>
     )
 }
 

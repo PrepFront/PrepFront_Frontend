@@ -1,7 +1,9 @@
-import { Box, Table, TableBody, TableCell, TableHead, TableRow } from "@mui/material";
+import { Box, IconButton, Table, TableBody, TableCell, TableHead, TableRow, Tooltip } from "@mui/material";
 import { useQuery } from "react-query";
 import WaitForData from "../../components/WaitForData";
 import { getDCSLinks } from "../../utils/services/dcs";
+import OpenInNewRoundedIcon from '@mui/icons-material/OpenInNewRounded';
+import { Settings } from "@mui/icons-material";
 
 export default function (props) {
 
@@ -47,7 +49,13 @@ export default function (props) {
                                         <TableCell align="center">{elem.taken_by}</TableCell>
                                         <TableCell align="center">{elem.time}</TableCell>
                                         <TableCell align="center">
-                                            <a href={elem.url} >Meeting Url</a>
+                                            <a href={elem.url} target='_blank'>
+                                                <Tooltip title="Enter Room">
+                                                    <IconButton>
+                                                        <OpenInNewRoundedIcon />
+                                                    </IconButton>
+                                                </Tooltip>
+                                            </a>
                                         </TableCell>
                                     </TableRow>
                                 ))}
